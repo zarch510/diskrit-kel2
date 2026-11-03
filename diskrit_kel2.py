@@ -11,10 +11,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from itertools import permutations
 
-# =====================================
-# 1. DATA LOKASI PENGANGKUTAN SAMPAH
-# =====================================
-
+# 1. INISIALISASI DATA
 lokasi = {
     0: "Tempat Penampungan",
     1: "Perumahan",
@@ -43,10 +40,7 @@ jarak = [
 
 jumlah_lokasi = len(lokasi)
 
-# =====================================
-# 2. MEMBUAT GRAF BERBOBOT
-# =====================================
-
+# 2. MEMBUAT GRAPH
 G = nx.Graph()
 
 # Menambahkan simpul dengan nama lokasi
@@ -58,10 +52,7 @@ for i in range(jumlah_lokasi):
     for j in range(i + 1, jumlah_lokasi):
         G.add_edge(i, j, weight=jarak[i][j])
 
-# =====================================
-# 3. MENCARI RUTE TSP TERPENDEK
-# =====================================
-
+# 3. MEMBUAT RUTE TERBAIK
 titik_tujuan = range(1, jumlah_lokasi)
 
 jarak_minimum = float("inf")
@@ -87,10 +78,7 @@ for urutan in permutations(titik_tujuan):
         jarak_minimum = total_jarak
         rute_terbaik = rute
 
-# =====================================
-# 4. MENAMPILKAN HASIL PERHITUNGAN
-# =====================================
-
+# 4. MENAMPILKAN HASIL
 print("=" * 60)
 print("       OPTIMASI RUTE PENGANGKUTAN SAMPAH")
 print("          MENGGUNAKAN ALGORITMA TSP")
@@ -131,10 +119,7 @@ print("Semua lokasi berhasil dikunjungi.")
 print("Kendaraan kembali ke tempat penampungan.")
 print("=" * 60)
 
-# =====================================
-# 5. MEMBUAT ILUSTRASI GRAPH
-# =====================================
-
+# illustrasi
 # Posisi simpul
 pos = {
     0: (0, 0),   # A: Tempat Penampungan
@@ -161,10 +146,7 @@ label_simpul = {
 # Label bobot semua sisi
 label_jarak = nx.get_edge_attributes(G, "weight")
 
-# -------------------------------------
-# GRAF PERTAMA: SELURUH HUBUNGAN LOKASI
-# -------------------------------------
-
+# GRAF PERTAMA: SELURUH HUBUNGAN
 ax = axes[0]
 
 nx.draw_networkx_nodes(
@@ -206,10 +188,7 @@ ax.set_title(
 
 ax.axis("off")
 
-# -------------------------------------
-# GRAF KEDUA: RUTE TSP TERPENDEK
-# -------------------------------------
-
+# Rute TSP
 ax = axes[1]
 
 # Menampilkan seluruh hubungan sebagai latar
@@ -268,9 +247,6 @@ ax.set_title(
 
 ax.axis("off")
 
-# =====================================
-# 6. MENAMPILKAN VISUALISASI
-# =====================================
-
+# Menimpilkan Visualisasi
 plt.tight_layout()
 plt.show()
