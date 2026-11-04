@@ -1,5 +1,4 @@
-## DISKRIT KELOMPOK 2
-
+# DISKRIT KELOMPOK 2
 import networkx as nx
 import matplotlib.pyplot as plt
 from itertools import permutations
